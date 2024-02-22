@@ -1,0 +1,29 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+<script src="{% static 'polls/addOption.js' %}"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% include  'polls/header.html' %}
+
+<h1>Add New Question</h1>
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+
+    <div id="optionsContainer">
+        <label for="option1">Option 1:</label>
+        <input type="text" name="options[]" id="option1"><br>
+    </div>
+
+    <button type="button" onclick="addOption()" id="add-option-button">
+        Add New Option?
+    </button>
+
+    <br>
+
+    <input type="submit">
+    <p id="error">{{ error_message }}</p>
+</form>

@@ -2,12 +2,14 @@
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
 <title>Results of Poll</title>
+
+{% include  'polls/header.html' %}
 <h1>{{ question.question_text }}</h1>
 
-<ul>
+<section>
     {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        <p class="vote-result">{{ choice.choice_text }}: {{ choice.votes }} vote{{ choice.votes|pluralize }}</p>
     {% endfor %}
-</ul>
+</section>
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<a href="{% url 'polls:detail' question.id %}" class="button">Vote again?</a>

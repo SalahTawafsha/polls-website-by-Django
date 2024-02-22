@@ -1,11 +1,132 @@
-li a {
-    color: green;
+body {
+    background-color: skyblue;
+    text-align: center;
+    margin: 0;
 }
 
-li a:visited{
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #eee; /* Customize background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+}
+
+header * {
+    margin: 0;
+    padding: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+header a:hover {
+    color: rgb(128, 128, 128);
+}
+
+
+h1 {
+    text-align: center;
+    color: black;
+}
+
+#create-question {
+    text-align: center;
+    text-decoration: none;
+    color: forestgreen;
+    font-size: 20px;
+    font-family: "Comic Sans MS", "Times New Roman", sans-serif;
+}
+
+#create-question:hover {
+    color: darkgreen;
+}
+
+.question {
+    background-color: #f2f2f2;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px auto;
+    border-radius: 15px;
+    text-align: center;
+    width: 50%;
+}
+
+.question a {
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+}
+
+.question a:hover {
+    color: black;
+}
+
+.question p {
+    color: black;
+}
+
+.vote-result {
+    width: fit-content;
+    margin: 10px auto;
+    text-align: start;
+}
+
+#add-option-button {
+    color: #45a049;
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#add-option-button:hover {
+    color: forestgreen;
+    cursor: pointer;
+}
+
+#error {
     color: red;
 }
 
-body{
-    background-color: skyblue;
+input[type="submit"], .button {
+    background-color: #45a049;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
+
+input[type="submit"]:hover, .button:hover {
+    background-color: forestgreen;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border-radius: 20px;
+    width: 200px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    margin: 10px 5px;
+}
+
+input[type="radio"] + label {
+    margin-right: 20px;
+}
+
+input[type="radio"]:checked + label {
+    color: forestgreen;
+}
+

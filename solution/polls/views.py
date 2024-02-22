@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
+from .forms import QuestionForm
 from .models import Choice, Question
 
 
@@ -16,7 +17,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
 
 class DetailView(generic.DetailView):
@@ -64,3 +65,28 @@ def vote(request, question_id):
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
     return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+
+
+def create_question(request):
+    """ View for creating a new question. """
+    if request.method == "POST":
+
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = Question(question_text=form.cleaned_data["question_text"], pub_date=timezone.now())
+            question.save()
+            options = request.POST.getlist("options[]")
+
+            is_there_option = False
+            for option in options:
+                if option != "":
+                    question.choice_set.create(choice_text=option, votes=0)
+                    is_there_option = True
+
+            if not is_there_option:
+                question.delete()
+                return render(request, "polls/create.html", {"form": form, "error_message": "You didn't add any option."})
+            return HttpResponseRedirect(reverse("polls:index"))
+    else:
+        form = QuestionForm()
+    return render(request, "polls/create.html", {"form": form})
