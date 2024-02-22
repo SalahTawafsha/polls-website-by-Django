@@ -14,6 +14,7 @@ pip install -r docs/requirements.txt
 
 ```bash
 cd solution
+py .\manage.py migrate
 py .\manage.py runserver
 ```
 
