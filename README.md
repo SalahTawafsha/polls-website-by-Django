@@ -18,6 +18,12 @@ py .\manage.py migrate
 py .\manage.py runserver
 ```
 
+## Testing
+
+```bash
+py .\manage.py test
+```
+
 ## Screenshots
 
 ### Home page
